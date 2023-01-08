@@ -19,5 +19,5 @@ code {
   display: grid;
   grid-template-rows: 1fr 2fr;
   align-items: center;
-  background-color: wheat;
+  background-color: #F9E79F;
 }

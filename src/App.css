@@ -4,6 +4,53 @@ header {
   display: grid;
 }
 
+main {
+  justify-self: center;
+  width: 80%;
+  height: 60vh;
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+}
+
+section {
+  justify-self: center;
+  width: 85%;
+  border-radius: 10px;
+  background: #F7DC6F;
+  box-shadow:  20px 20px 60px #d2bb5e,
+             -20px -20px 60px #fffd80;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 20px 0;
+  height: 35vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  display: grid;
+  gap: 20px;
+}
+
+ul::-webkit-scrollbar {
+  display: none;
+}
+
+li {
+  text-align: center;
+  /* align-self: center; */
+  justify-self: center;
+  width: 70%;
+  height: 12vh;
+  border-radius: 50px;
+  background: #F4D03F;
+  box-shadow:  20px 20px 60px #cfb136,
+             -20px -20px 60px #ffef48;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .title {
   justify-self: center;
 }
@@ -14,6 +61,75 @@ header {
   height: 30px;
   min-width: 300px;
   border: none;
-  border-radius: 10px;
-  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.20);
+  border-radius: 50px;
+  background: #F7DC6F;
+  box-shadow:  20px 20px 60px #d2bb5e,
+             -20px -20px 60px #fffd80;
+}
+
+.search:focus {
+  outline: none;
+}
+
+.search::placeholder {
+  padding-left: 20px;
+  font-weight: bold;
+}
+
+.boton {
+  width: 60px;
+  height: 60px;
+  justify-self: end;
+  align-self: end;
+  border-radius: 50%;
+  border: none;
+  background: #F7DC6F;
+  box-shadow:  20px 20px 60px #d2bb5e,
+             -20px -20px 60px #fffd80;
+  font-size: 35px;
+}
+
+.boton:hover {
+  transform: rotate(360deg);
+  transition: transform 1s;
+}
+
+.boton:active {
+  box-shadow: none;
+  background-color: #F4D03F;
+}
+
+.aceptar {
+  width: 32px;
+  height: 32px;
+  background-image: url(../icon/aceptar.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  box-shadow: 10px 10px 5px 0px rgb(0 0 0 / 20%);
+}
+
+.cancelar {
+  width: 32px;
+  height: 32px;
+  background-image: url(../icon/cancelar.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  box-shadow: 10px 10px 5px 0px rgb(0 0 0 / 20%);
+}
+
+.efecto:hover {
+  transform: scale(1.2);
+  transition: transform 1s;
+}
+
+.efecto:active {
+  box-shadow: none;
+}
+
+.completed-line {
+  text-decoration: line-through;
 }

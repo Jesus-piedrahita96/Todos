@@ -332,3 +332,47 @@ button:active {
   -moz-transition: box-shadow 0.2s ease-in;
   transition: box-shadow 0.2s ease-in;
 }
+
+.animation {
+  width: 5px;
+  height: 5px;
+  margin-left: 50%;
+  margin-top: 10%;
+  border-radius: 50%;
+  animation-name: circulo;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes circulo {
+  15%{
+    transform-origin: center;
+    transform: scale(1.5);
+    border: 1px solid blue;
+  }
+  30%{
+    transform-origin: center;
+    transform: scale(2);
+    border: 1.5px solid rgb(0, 187, 255);
+  }
+  50%{
+    transform-origin: center;
+    transform: scale(2.5);
+    border: 2px solid rgb(0, 255, 251);
+  }
+  75%{
+    transform-origin: center;
+    transform: scale(3);
+    border: 2.5px solid rgb(0, 255, 94);
+  }
+  90%{
+    transform-origin: center;
+    transform: scale(3.5);
+    border: 3px solid rgb(157, 255, 0);
+  }
+  100%{
+    transform-origin: center;
+    transform: scale(4);
+    border: 3.5px solid rgb(234, 255, 0);
+  }
+}

@@ -22,7 +22,7 @@ function AppUi(){
       <main>
         <TodoList>
           {value.error && <p>Ocurrio un error, contactar tecnicos</p>}
-          {value.loading && <p>Estamos cargando, por favor espere</p>}
+          {value.loading && <div className="animation"></div>}
           {(!value.loading && !value.searchTodo.length && !value.error) && <p>Puede crear nuevos TODOS</p>}
           {value.searchTodo.map(todo => (
             <TodoItem

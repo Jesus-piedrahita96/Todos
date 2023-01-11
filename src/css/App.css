@@ -141,7 +141,7 @@ li {
 .formulario {
   position: absolute;
   top: -560px;
-  left: 315px;
+  margin: 0 calc(50% - 210px);
   height: 60vh;
   width: 400px;
   display: grid;

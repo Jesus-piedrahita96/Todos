@@ -2,23 +2,18 @@ import React from "react"
 
 
 function useLocalStorage(itemName, initialValue) {
-  //estado de carga
+  //estados
   const [loading, setLoading] = React.useState(true)
-  //estado de error
   const [error, setError] = React.useState(false)
-  //estado de los todos
   const [ item, setItem ] = React.useState(initialValue)
 
   //funcion que actualiza el localStorage y el estado de todo
   const saveItem = (newItem) => {
     try {
-      //variable que almacena un json en formato de string
-      //que se le pasa por parametro
       const stringifyItem = JSON.stringify(newItem)
-      //se almacena la variable anterior en el localStorage
       localStorage.setItem(itemName, stringifyItem)
-      //actualiza el estado de todo con el parametro que se le pase
       setItem(newItem)
+
     } catch (error) {
       setError(error)
       setLoading(false)
@@ -28,18 +23,14 @@ function useLocalStorage(itemName, initialValue) {
   React.useEffect(() => {
     setTimeout(() => {
       try {
-        let parsedItem //variable que almacena los datos final del localStorage
-        //variable que almacena los datos que obtiene del localStorage
+        let parsedItem
         const localStorageItem = localStorage.getItem(itemName)
 
-        //validacion del localStorage
-        if (!localStorageItem) { //si no hay datos que entre aca
-          //asignacion de datos en un array nuevo
+        if (!localStorageItem) {
           localStorage.setItem(itemName, JSON.stringify([]))
           parsedItem = []
-        } else { // si no
-          // se muestran los datos que estan actualmente
-          // convierte el json que esta en cadena de nuevo a su estado original
+
+        } else {
           parsedItem = JSON.parse(localStorageItem)
         }
 

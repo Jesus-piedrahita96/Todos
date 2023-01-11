@@ -8,6 +8,8 @@ import { TodoList } from "./TodoList";
 import { TodoContext } from "./TodoContext";
 import { Modal } from "./Modal";
 import { TodoForm } from "./TodoForm";
+import { TodoHeader } from "./TodoHeader";
+import { TodoMain } from "./TodoMain";
 
 
 function AppUi(){
@@ -15,11 +17,11 @@ function AppUi(){
 
   return (
     <>
-      <header>
+      <TodoHeader>
         <TodoCounter/>
         <TodoSearch/>
-      </header>
-      <main>
+      </TodoHeader>
+      <TodoMain>
         <TodoList>
           {value.error && <p>Ocurrio un error, contactar tecnicos</p>}
           {value.loading && <div className="animation"></div>}
@@ -34,13 +36,15 @@ function AppUi(){
             />
           ))}
         </TodoList>
+
         {value.openModal &&(
           <Modal>
             <TodoForm/>
           </Modal>
         )}
+
         <CreateTodoButton/>
-      </main>
+      </TodoMain>
     </>
   )
 }

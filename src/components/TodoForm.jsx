@@ -6,7 +6,7 @@ function TodoForm(){
   const [newTodoValue, setNewTodoValue] = React.useState('')
   const value = React.useContext(TodoContext)
 
-  const onSubmit = (event) => {
+   const onSubmit = (event) => {
     event.preventDefault()
     value.addTodo(newTodoValue)
     value.setOpenModal(false)

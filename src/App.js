@@ -1,7 +1,7 @@
 //import './App.css';
 import React from "react";
-import { AppUi } from "./componentes/AppUi"; //importacion del archivo appUi.js
-import {TodoProvider} from "./componentes/TodoContext"
+import { AppUi } from "./components/AppUi"; //importacion del archivo appUi.js
+import {TodoProvider} from "./components/TodoContext"
 
 // const defaultTodos = [
 //   { text: 'cebolla', completed: false },

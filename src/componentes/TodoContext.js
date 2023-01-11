@@ -12,6 +12,8 @@ function TodoProvider(props) {
   } = useLocalStorage('TODOS_V1', [])
   //estado del buscador
   const [ searchValue, setSearchValue ] = React.useState('')
+  //estado del modal
+  const [ openModal, setOpenModal ] = React.useState(false)
   //filtra la cantidad de todos verdaderos
   const completedTodos = todos.filter(todo => !!todo.completed).length
   //cuenta la cantidad de todos que hay sin importar si es verdadero o falso
@@ -66,7 +68,16 @@ function TodoProvider(props) {
     }
   }
 
-  return(
+  const addTodo = (text) => {
+    const aux = [...todos]
+    aux.push({
+      text: text,
+      completed: false
+    })
+    saveTodos(aux)
+  }
+
+  return (
     <TodoContext.Provider value={{
       loading,
       error,
@@ -76,11 +87,14 @@ function TodoProvider(props) {
       setSearchValue,
       searchTodo,
       completeTodo,
-      deleteTodo
+      deleteTodo,
+      openModal,
+      setOpenModal,
+      addTodo
     }}>
       {props.children}
     </TodoContext.Provider>
   )
 }
 
-export {TodoContext, TodoProvider}
+export { TodoContext, TodoProvider }

@@ -6,6 +6,8 @@ import { CreateTodoButton } from "./TodoButton";
 import { TodoSearch } from "./TodoSearch";
 import { TodoList } from "./TodoList";
 import { TodoContext } from "./TodoContext";
+import { Modal } from "./Modal";
+import { TodoForm } from "./TodoForm";
 
 
 function AppUi(){
@@ -32,7 +34,12 @@ function AppUi(){
             />
           ))}
         </TodoList>
-        <CreateTodoButton />
+        {value.openModal &&(
+          <Modal>
+            <TodoForm/>
+          </Modal>
+        )}
+        <CreateTodoButton/>
       </main>
     </>
   )

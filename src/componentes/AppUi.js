@@ -5,33 +5,30 @@ import { TodoItem } from "./TodoItem";
 import { CreateTodoButton } from "./TodoButton";
 import { TodoSearch } from "./TodoSearch";
 import { TodoList } from "./TodoList";
+import { TodoContext } from "./TodoContext";
 
 
-function AppUi(props){
+function AppUi(){
+  const value = React.useContext(TodoContext)
+
   return (
     <>
       <header>
-        <TodoCounter
-          total={props.totalTodos}
-          completed={props.completedTodos}
-        />
-        <TodoSearch
-          searchValue={props.searchValue}
-          setSearchValue={props.setSearchValue}
-        />
+        <TodoCounter/>
+        <TodoSearch/>
       </header>
       <main>
         <TodoList>
-          {(props.error) && <p>Ocurrio un error, contactar tecnicos</p>}
-          {props.loading && <p>Estamos cargando, por favor espere</p>}
-          {(!props.loading && !props.searchTodo.length && !props.error) && <p>Puede crear nuevos TODOS</p>}
-          {props.searchTodo.map(todo => (
+          {value.error && <p>Ocurrio un error, contactar tecnicos</p>}
+          {value.loading && <p>Estamos cargando, por favor espere</p>}
+          {(!value.loading && !value.searchTodo.length && !value.error) && <p>Puede crear nuevos TODOS</p>}
+          {value.searchTodo.map(todo => (
             <TodoItem
               key={todo.text}
               text={todo.text}
               completed={todo.completed}
-              onComplete={() => props.completeTodo(todo.text)}
-              onDelete={() => props.deleteTodo(todo.text)}
+              onComplete={() => value.completeTodo(todo.text)}
+              onDelete={() => value.deleteTodo(todo.text)}
             />
           ))}
         </TodoList>

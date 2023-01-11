@@ -1,5 +1,5 @@
 import React from "react";
-import './css/App.css';
+import '../css/App.css';
 import { TodoCounter } from './TodoCounter'
 import { TodoItem } from "./TodoItem";
 import { CreateTodoButton } from "./TodoButton";
@@ -22,6 +22,9 @@ function AppUi(props){
       </header>
       <main>
         <TodoList>
+          {(props.error) && <p>Ocurrio un error, contactar tecnicos</p>}
+          {props.loading && <p>Estamos cargando, por favor espere</p>}
+          {(!props.loading && !props.searchTodo.length && !props.error) && <p>Puede crear nuevos TODOS</p>}
           {props.searchTodo.map(todo => (
             <TodoItem
               key={todo.text}

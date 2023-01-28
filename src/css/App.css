@@ -121,6 +121,17 @@ li {
   box-shadow: 10px 10px 5px 0px rgb(0 0 0 / 20%);
 }
 
+.editar {
+  width: 32px;
+  height: 32px;
+  background-image: url(../icon/edit.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  box-shadow: 10px 10px 5px 0px rgb(0 0 0 / 20%);
+}
+
 .efecto:hover {
   transform: scale(1.2);
   transition: transform 1s;

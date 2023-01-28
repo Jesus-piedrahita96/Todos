@@ -29,11 +29,12 @@ function AppUi(){
           {(!value.loading && !value.searchTodo.length && !value.error) && <p>Puede crear nuevos TODOS</p>}
           {value.searchTodo.map(todo => (
             <TodoItem
-              key={todo.text}
+              key={todo.id}
               text={todo.text}
               completed={todo.completed}
-              onComplete={() => value.completeTodo(todo.text)}
-              onDelete={() => value.deleteTodo(todo.text)}
+              onComplete={() => value.completeTodo(todo.id)}
+              onDelete={() => value.deleteTodo(todo.id)}
+              onEdit={() => value.editTodo(todo.id)}
             />
           ))}
         </TodoList>

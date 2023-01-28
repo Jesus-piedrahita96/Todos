@@ -3,7 +3,6 @@ import React from "react";
 import { AppUi } from "./components/AppUi"; //importacion del archivo appUi.js
 import {TodoProvider} from "./components/TodoContext"
 import { HashRouter, Route, Routes } from "react-router-dom";
-import { NewTodo } from "./components/NewTodo";
 import { EditTodo } from "./components/EditTodo";
 
 // const defaultTodos = [
@@ -24,8 +23,7 @@ function App() {
       <TodoProvider>
         <Routes>
           <Route path="/" element={<AppUi/>}/>
-          <Route path="/newtodo" element={<NewTodo />} />
-          <Route path="/edittodo/:id" element={<EditTodo />} />
+          <Route path="/edittodo/:id" element={<EditTodo/>} />
         </Routes>
     </TodoProvider>
     </HashRouter>

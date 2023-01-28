@@ -11,7 +11,7 @@ function TodoProvider(props) {
     loading,
     error,
     sincronizeItem: sincronizeTodos
-  } = useLocalStorage('TODOS_V1', [])
+  } = useLocalStorage('TODOS_V2', [])
 
   //declaracion de estados
   const [ searchValue, setSearchValue ] = React.useState('')
@@ -37,16 +37,16 @@ function TodoProvider(props) {
   }
 
   //funcion que da por completado el todo
-  const completeTodo = (text) => {
-    let todoIndex = todos.findIndex(todo => todo.text === text)
+  const completeTodo = (id) => {
+    let todoIndex = todos.findIndex(todo => todo.id === id)
     let aux = [ ...todos ]
     aux[ todoIndex ].completed = true
     saveTodos(aux)
   }
 
   //funcion para eliminar todos
-  const deleteTodo = (text) => {
-    let todoIndex = todos.findIndex(todo => todo.text === text)
+  const deleteTodo = (id) => {
+    let todoIndex = todos.findIndex(todo => todo.id === id)
     let aux = [ ...todos ]
 
     if (aux[ todoIndex ].completed) {
@@ -59,10 +59,12 @@ function TodoProvider(props) {
 
   //funcion para agregar mas items
   const addTodo = (text) => {
-    const aux = [...todos]
+    const aux = [ ...todos ]
+    let id = generatorIds(aux)
     aux.push({
       text: text,
-      completed: false
+      completed: false,
+      id: id
     })
     saveTodos(aux)
   }
@@ -87,6 +89,16 @@ function TodoProvider(props) {
       {props.children}
     </TodoContext.Provider>
   )
+}
+
+function generatorIds(todos) {
+  if (!todos.length) {
+    return 1
+  } else {
+    const id = todos.map(todo => todo.id)
+    const cont = Math.max(...id)
+    return cont + 1
+  }
 }
 
 export { TodoContext, TodoProvider }

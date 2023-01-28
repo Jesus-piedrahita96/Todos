@@ -9,7 +9,8 @@ function TodoProvider(props) {
     item: todos,
     saveItem: saveTodos,
     loading,
-    error
+    error,
+    sincronizeItem: sincronizeTodos
   } = useLocalStorage('TODOS_V1', [])
 
   //declaracion de estados
@@ -80,7 +81,8 @@ function TodoProvider(props) {
       deleteTodo,
       openModal,
       setOpenModal,
-      addTodo
+      addTodo,
+      sincronizeTodos
     }}>
       {props.children}
     </TodoContext.Provider>

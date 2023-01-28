@@ -10,6 +10,7 @@ import { Modal } from "./Modal";
 import { TodoForm } from "./TodoForm";
 import { TodoHeader } from "./TodoHeader";
 import { TodoMain } from "./TodoMain";
+import { ChageAlertWithStorageListener } from "./ChageAlert";
 
 
 function AppUi(){
@@ -42,7 +43,9 @@ function AppUi(){
             <TodoForm/>
           </Modal>
         )}
-
+        <ChageAlertWithStorageListener
+          sincronize={value.sincronizeTodos}
+        />
         <CreateTodoButton/>
       </TodoMain>
     </>

@@ -102,7 +102,7 @@ li {
 .aceptar {
   width: 32px;
   height: 32px;
-  background-image: url(../../icon/aceptar.png);
+  background-image: url(../icon/aceptar.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -113,7 +113,7 @@ li {
 .cancelar {
   width: 32px;
   height: 32px;
-  background-image: url(../../icon/cancelar.png);
+  background-image: url(../icon/cancelar.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

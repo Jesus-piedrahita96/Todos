@@ -69,6 +69,19 @@ function TodoProvider(props) {
     saveTodos(aux)
   }
 
+  //editar todos
+  const onEditar = (todo) => {
+    const aux = [ ...todos ]
+    const indice = aux.findIndex(data => data.id === todo.id)
+    if (aux[ indice ]) {
+      aux[ indice ].text = todo.text
+      saveTodos(aux)
+      alert('Ecxito al modificar el todo')
+    } else {
+      alert('Error al modificar el todo')
+    }
+  }
+
   //retornando las variables a un estado global
   return (
     <TodoContext.Provider value={{
@@ -84,7 +97,8 @@ function TodoProvider(props) {
       openModal,
       setOpenModal,
       addTodo,
-      sincronizeTodos
+      sincronizeTodos,
+      onEditar
     }}>
       {props.children}
     </TodoContext.Provider>

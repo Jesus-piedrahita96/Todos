@@ -30,11 +30,11 @@ function AppUi(){
           {value.searchTodo.map(todo => (
             <TodoItem
               key={todo.id}
+              id={todo.id}
               text={todo.text}
               completed={todo.completed}
               onComplete={() => value.completeTodo(todo.id)}
               onDelete={() => value.deleteTodo(todo.id)}
-              onEdit={() => value.editTodo(todo.id)}
             />
           ))}
         </TodoList>

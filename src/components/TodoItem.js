@@ -1,7 +1,12 @@
 import React from "react";
 import '../css/App.css'
+import { useNavigate } from "react-router-dom";
 
 function TodoItem(props) {
+  const navigate = useNavigate()
+  const editar = () => {
+    navigate(`/edittodo/${props.id}`)
+  }
 
   return (
     <li>
@@ -14,7 +19,7 @@ function TodoItem(props) {
       </p>
       <span
         className="editar efecto"
-        onClick={props.onEdit}
+        onClick={editar}
       >
       </span>
       <span

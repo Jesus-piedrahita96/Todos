@@ -6,6 +6,7 @@ function EditTodo() {
   const localDataStorage = useContext(TodoContext)
   const {id} = useParams()
   const local = localDataStorage.searchTodo.find(todo => todo.id == id)
+
   const [data, setData] = React.useState({
     text: local.text,
     completed: local.completed,
@@ -25,17 +26,33 @@ function EditTodo() {
 
   return(
     <>
-      <h2>EDITAR TODO</h2>
-      <form onSubmit={editar}>
-        <label htmlFor="uid">id</label>
-        <input id="uid" value={data.id} disabled/>
-        <br/>
-        <label htmlFor="text">Text</label>
-        <input id="text" value={data.text} onChange={escuchador}/>
-        <br/>
-        <button type="submit">Editar</button>
-        <button onClick={() => navigate('/')}>Regresar</button>
-      </form>
+      <div className="content-edit">
+        <h2 className="content-edit__title">EDITAR TODO</h2>
+        <form
+          className="content-edit__form"
+          onSubmit={editar}
+        >
+          <input
+            className="content-edit__effect"
+            id="uid"
+            value={data.id}
+            disabled
+          />
+          <input
+            className="content-edit__effect"
+            id="text"
+            value={data.text}
+            onChange={escuchador}
+          />
+          <div className="content-edit__form-button">
+            <button
+              className='button2'
+              onClick={() => navigate('/')}
+            >Regresar</button>
+            <button className="button" type="submit">Editar</button>
+          </div>
+        </form>
+      </div>
     </>
   )
 }

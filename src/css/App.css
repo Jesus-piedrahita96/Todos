@@ -197,6 +197,42 @@ li {
   gap: 15px;
 }
 
+.content-edit {
+  margin: 60px auto;
+  height: 63vh;
+  width: 500px;
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  place-content: center;
+  background: #F7DC6F;
+  box-shadow:  20px 20px 60px #d2bb5e,
+             -20px -20px 60px #fffd80;
+}
+
+.content-edit__title {
+  align-self: center;
+  justify-self: center;
+}
+
+.content-edit__form {
+  display: grid;
+  grid-auto-rows: 40px;
+  grid-template-rows: 1fr 1fr 2fr;
+  width: 300px;
+}
+
+.content-edit__effect {
+  height: 25px;
+  border: none;
+  border-radius: 10px;
+}
+
+.content-edit__form-button {
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+}
+
 button {
   --color: rgb(247, 220, 111);
   position: relative;

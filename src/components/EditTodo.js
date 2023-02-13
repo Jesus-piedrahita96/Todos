@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { TodoContext } from "./TodoContext";
+import swal from "sweetalert";
 
 function EditTodo() {
   const localDataStorage = useContext(TodoContext)
   const {id} = useParams()
-  const local = localDataStorage.searchTodo.find(todo => todo.id == id)
+  const num = Number(id)
+  const local = localDataStorage.searchTodo.find(todo => todo.id === num)
 
   const [data, setData] = React.useState({
     text: local.text,
@@ -15,9 +17,25 @@ function EditTodo() {
   const navigate = useNavigate()
 
   const editar = (event) => {
-    event.preventDefault()
-    localDataStorage.onEditar(data)
-    navigate('/')
+    swal({
+      icon : 'info',
+      text: 'Seguro quiere editar',
+      buttons: true
+    }).then(response => {
+      if(response){
+        swal({
+          text:'editado con exito',
+          icon: 'success',
+          buttons: false,
+          timer: 2000
+        })
+        event.preventDefault()
+        localDataStorage.onEditar(data)
+        navigate('/')
+      }else{
+        swal({text:'No se edito el TODO', buttons: false, timer:2000})
+      }
+    })
   }
 
   const escuchador = (event) => {

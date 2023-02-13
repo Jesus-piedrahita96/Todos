@@ -3,6 +3,7 @@ import { useLocalStorage } from "./useLocalStorage";
 import { usePostApi } from "../hooks/usePostApi";
 import { useDelete } from "../hooks/useDelete";
 import { useUpdate } from "../hooks/useUpdate";
+import swal from "sweetalert";
 
 const TodoContext = React.createContext()
 
@@ -62,12 +63,33 @@ function TodoProvider(props) {
     let aux = [ ...todos ]
 
     if (aux[ todoIndex ].completed) {
-      aux.splice(todoIndex, 1)
-      saveTodos(aux)
-      deleted.eliminar(API, id)
+      swal({
+        icon: 'warning',
+        text: 'Seguro quiere eliminar el TODO',
+        buttons: true,
+        dangerMode: true
+      }).then(response => {
+        if (response) {
+          aux.splice(todoIndex, 1)
+          saveTodos(aux)
+          deleted.eliminar(API, id)
+          swal({
+            text: 'Eliminado con exito',
+            icon: 'success',
+            buttons: false,
+            timer: 1800
+          })
+        }
+      }).catch(error => console.log(error))
+        .finally(() => console.log('finalizado'))
 
     } else {
-      alert('Error solo puede borrar los todo completados')
+      swal({
+        icon: 'error',
+        text: 'Error solo puede borrar los todo completados',
+        buttons: false,
+        timer: 1800
+      })
     }
   }
 
@@ -81,7 +103,7 @@ function TodoProvider(props) {
 
     saveTodos(aux)
     post.postFuntion(text, API
-      )
+    )
   }
 
 
@@ -93,9 +115,13 @@ function TodoProvider(props) {
       aux[ indice ].text = todo.text
       saveTodos(aux)
       update.update(API, todo.id, todo.text)
-      alert('Ecxito al modificar el todo')
     } else {
-      alert('Error al modificar el todo')
+      swal({
+        icon: 'error',
+        text: 'no se pudo realizar la actualizacion',
+        buttons: false,
+        timer: 1500
+      })
     }
   }
 

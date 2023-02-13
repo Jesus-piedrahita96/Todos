@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocalStorage } from "./useLocalStorage";
 import { usePostApi } from "../hooks/usePostApi";
-import { useNavigate } from "react-router-dom";
-
+import { useDelete } from "../hooks/useDelete";
+import { useUpdate } from "../hooks/useUpdate";
 
 const TodoContext = React.createContext()
 
@@ -16,10 +16,11 @@ function TodoProvider(props) {
     loading,
     error,
     sincronizeItem: sincronizeTodos,
-    saveTodosPost
   } = useLocalStorage('TODOS_V2', [])
   const API = 'http://localhost:8000/api/todos/'
   const post = usePostApi()
+  const deleted = useDelete()
+  const update = useUpdate()
 
   //declaracion de estados
   const [ searchValue, setSearchValue ] = React.useState('')
@@ -63,6 +64,8 @@ function TodoProvider(props) {
     if (aux[ todoIndex ].completed) {
       aux.splice(todoIndex, 1)
       saveTodos(aux)
+      deleted.eliminar(API, id)
+
     } else {
       alert('Error solo puede borrar los todo completados')
     }
@@ -77,7 +80,8 @@ function TodoProvider(props) {
     })
 
     saveTodos(aux)
-    post.postFuntion(text, API)
+    post.postFuntion(text, API
+      )
   }
 
 
@@ -88,6 +92,7 @@ function TodoProvider(props) {
     if (aux[ indice ]) {
       aux[ indice ].text = todo.text
       saveTodos(aux)
+      update.update(API, todo.id, todo.text)
       alert('Ecxito al modificar el todo')
     } else {
       alert('Error al modificar el todo')

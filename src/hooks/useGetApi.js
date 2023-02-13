@@ -14,11 +14,11 @@ function useGetApi(api) {
       const response = await axios(api)
       saveItem(response.data)
       setdata(response.data)
-      console.log(response.data)
 
     }, 1500);
 
-  }, [])
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ api])
 
   return data
 }

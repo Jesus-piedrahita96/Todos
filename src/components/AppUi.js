@@ -17,8 +17,7 @@ import { useGetApi } from "../hooks/useGetApi";
 function AppUi(){
   const value = React.useContext(TodoContext)
   const API = 'http://localhost:8000/api/todos/';
-  const data = useGetApi(API)
-  console.log(data)
+  useGetApi(API)
 
 
   return (

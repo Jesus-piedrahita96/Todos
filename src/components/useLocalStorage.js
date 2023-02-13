@@ -27,6 +27,7 @@ function useLocalStorage(itemName, initialValue) {
   };
 
   React.useEffect(() => {
+
     setTimeout(() => {
       try {
         let parsedItem
@@ -47,15 +48,16 @@ function useLocalStorage(itemName, initialValue) {
         setLoading(false)
         setSincronizedItem(true);
       }
-    }, 3000);
-  }, [sincronizedItem])
+    }, 2000);
+  }, [])
 
   return {
     item,
     saveItem,
     loading,
+    setLoading,
     error,
-    sincronizeItem
+    sincronizeItem,
   }
 }
 

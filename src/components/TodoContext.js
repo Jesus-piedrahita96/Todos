@@ -1,17 +1,25 @@
 import React from "react";
 import { useLocalStorage } from "./useLocalStorage";
+import { usePostApi } from "../hooks/usePostApi";
+import { useNavigate } from "react-router-dom";
+
 
 const TodoContext = React.createContext()
 
+
 function TodoProvider(props) {
+
   //recibiendo datos de la funcion de localStorage
   const {
     item: todos,
     saveItem: saveTodos,
     loading,
     error,
-    sincronizeItem: sincronizeTodos
+    sincronizeItem: sincronizeTodos,
+    saveTodosPost
   } = useLocalStorage('TODOS_V2', [])
+  const API = 'http://localhost:8000/api/todos/'
+  const post = usePostApi()
 
   //declaracion de estados
   const [ searchValue, setSearchValue ] = React.useState('')
@@ -20,6 +28,7 @@ function TodoProvider(props) {
   //contador del total de todos y todos completados
   const completedTodos = todos.filter(todo => !!todo.completed).length
   let totalTodos = todos.length
+
 
   let searchTodo = []
 
@@ -36,6 +45,7 @@ function TodoProvider(props) {
     })
   }
 
+
   //funcion que da por completado el todo
   const completeTodo = (id) => {
     let todoIndex = todos.findIndex(todo => todo.id === id)
@@ -43,6 +53,7 @@ function TodoProvider(props) {
     aux[ todoIndex ].completed = true
     saveTodos(aux)
   }
+
 
   //funcion para eliminar todos
   const deleteTodo = (id) => {
@@ -60,14 +71,15 @@ function TodoProvider(props) {
   //funcion para agregar mas items
   const addTodo = (text) => {
     const aux = [ ...todos ]
-    let id = generatorIds(aux)
     aux.push({
       text: text,
-      completed: false,
-      id: id
+      completed: false
     })
+
     saveTodos(aux)
+    post.postFuntion(text, API)
   }
+
 
   //editar todos
   const onEditar = (todo) => {
@@ -98,21 +110,22 @@ function TodoProvider(props) {
       setOpenModal,
       addTodo,
       sincronizeTodos,
-      onEditar
+      onEditar,
+      saveTodos
     }}>
       {props.children}
     </TodoContext.Provider>
   )
 }
 
-function generatorIds(todos) {
-  if (!todos.length) {
-    return 1
-  } else {
-    const id = todos.map(todo => todo.id)
-    const cont = Math.max(...id)
-    return cont + 1
-  }
-}
+// function generatorIds(todos) {
+//   if (!todos.length) {
+//     return 1
+//   } else {
+//     const id = todos.map(todo => todo.id)
+//     const cont = Math.max(...id)
+//     return cont + 1
+//   }
+// }
 
 export { TodoContext, TodoProvider }

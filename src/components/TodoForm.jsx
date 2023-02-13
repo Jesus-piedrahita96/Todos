@@ -1,12 +1,14 @@
 import React from 'react'
-import {TodoContext} from './TodoContext'
+import { TodoContext } from './TodoContext'
+import { usePostApi } from '../hooks/usePostApi'
 import '../css/App.css'
 
-function TodoForm(){
-  const [newTodoValue, setNewTodoValue] = React.useState('')
+function TodoForm() {
+  const [ newTodoValue, setNewTodoValue ] = React.useState('')
   const value = React.useContext(TodoContext)
 
-   const onSubmit = (event) => {
+
+  const onSubmit = (event) => {
     event.preventDefault()
     value.addTodo(newTodoValue)
     value.setOpenModal(false)
@@ -20,7 +22,7 @@ function TodoForm(){
     setNewTodoValue(event.target.value)
   }
 
-  return(
+  return (
     <form className="formulario" onSubmit={onSubmit}>
       <label
         htmlFor="campo"
@@ -53,4 +55,4 @@ function TodoForm(){
   )
 }
 
-export {TodoForm}
+export { TodoForm }
